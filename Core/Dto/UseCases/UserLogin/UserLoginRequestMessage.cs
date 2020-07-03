@@ -2,7 +2,7 @@
 
 namespace Core.Dto.UseCases.UserLogin
 {
-    public class UserLoginRequestMessage: IRequest<UserLoginResponseMessage>
+    public class UserLoginRequestMessage
     {
         public string UserName { get; private set; }
         public string Password { get; private set; }

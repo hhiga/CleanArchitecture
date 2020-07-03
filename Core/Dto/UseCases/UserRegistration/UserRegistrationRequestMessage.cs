@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Dto.UseCases.UserRegistration
 {
-    public class UserRegistrationRequestMessage: IRequest<UserRegistrationResponseMessage>
+    public class UserRegistrationRequestMessage
     {
         public string FirstName { get; }
         public string LastName { get; }

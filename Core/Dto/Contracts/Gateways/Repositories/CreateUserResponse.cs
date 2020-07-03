@@ -6,8 +6,10 @@ namespace Core.Dto.Contracts.Gateways.Repositories
 {
     public class CreateUserResponse : BaseGatewayResponse
     {
-        public CreateUserResponse(bool success, IEnumerable<string> errors) : base(success, errors)
+        public int Id { get; }
+        public CreateUserResponse(bool success, IEnumerable<string> errors, int Id) : base(success, errors)
         {
+            this.Id = Id;
         }
     }
 }

@@ -19,14 +19,14 @@ namespace CleanArchitecture.UnitTest
             var mockUserRepository = new Mock<IUserRepository>();
             mockUserRepository
                 .Setup(repo => repo.Create(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(new CreateUserResponse(true, new List<string>())));
+                .Returns(Task.FromResult(new CreateUserResponse(true, new List<string>(),1)));
 
             var useCase = new RegisterUserUseCase(mockUserRepository.Object);
 
             var requestMessage = new UserRegistrationRequestMessage("Carlos", "Garcia", "carlos.garcia@mail.com", "CarlosGarcia", "Passw0rd-");
 
             //Act
-            var responseMessage = useCase.Handle(requestMessage);
+            var responseMessage = useCase.Handle(requestMessage).Result;
 
             //Assert
             Assert.True(responseMessage.Success);

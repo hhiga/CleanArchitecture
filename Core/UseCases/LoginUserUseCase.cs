@@ -1,12 +1,13 @@
 ﻿using Core.Contracts;
 using Core.Dto.UseCases.UserLogin;
 using System;
+using System.Threading.Tasks;
 
 namespace Core.UseCases
 {
-    public class LoginUserUseCase : IRequestHandler<UserLoginRequestMessage, UserLoginResponseMessage>
+    public class LoginUserUseCase : IRequestHandlerAsync<UserLoginRequestMessage, UserLoginResponseMessage>
     {
-        public UserLoginResponseMessage Handle(UserLoginRequestMessage request)
+        public async Task<UserLoginResponseMessage> Handle(UserLoginRequestMessage request)
         {
             throw new NotImplementedException();
         }
