@@ -8,6 +8,10 @@ namespace Core.Dto.Contracts.Gateways
     {
         public bool Success { get; }
         public IEnumerable<string> Errors { get; }
+        public BaseGatewayResponse()
+        {
+
+        }
         public BaseGatewayResponse(bool success, IEnumerable<string> errors)
         {
             this.Success = success;

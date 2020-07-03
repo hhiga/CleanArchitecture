@@ -19,7 +19,7 @@ namespace CleanArchitecture.UnitTest
             var mockUserRepository = new Mock<IUserRepository>();
             mockUserRepository
                 .Setup(repo => repo.Create(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(new CreateUserResponse(true, new List<string>(),1)));
+                .Returns(Task.FromResult(new CreateUserResponse(true, new List<string>(),"asdasd")));
 
             var useCase = new RegisterUserUseCase(mockUserRepository.Object);
 

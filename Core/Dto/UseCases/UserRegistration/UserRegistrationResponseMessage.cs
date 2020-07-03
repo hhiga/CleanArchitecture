@@ -7,8 +7,8 @@ namespace Core.Dto.UseCases.UserRegistration
 {
     public class UserRegistrationResponseMessage : ResponseMesssage
     {
-        public int Id { get; }
-        public UserRegistrationResponseMessage(bool success, string message, int Id) : base(success, message)
+        public string Id { get; }
+        public UserRegistrationResponseMessage(bool success, string message, string Id) : base(success, message)
         {
             this.Id = Id;
         }
