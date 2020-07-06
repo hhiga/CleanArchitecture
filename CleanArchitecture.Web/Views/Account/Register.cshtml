@@ -5,18 +5,18 @@
 
 @model CleanArchitecture.Web.Models.ViewModels.Account.RegisterViewModel
 
-<div>
-    <form method="post" asp-controller="Account" asp-action="Register">
+<div class="register-card">
+    <form method="post" asp-controller="Account" asp-action="Register" class="register-form">
         <input type="hidden" asp-for="ReturnUrl"/>
         <div asp-validation-summary="ModelOnly"></div>
-        <input asp-for="UserName" />
+        <input asp-for="UserName" class="form-control" placeholder="Username"/>
         <span asp-validation-for="UserName"></span>
-        <input asp-for="Name" />
+        <input asp-for="Name" class="form-control" placeholder="Name"/>
         <span asp-validation-for="UserName"></span>
-        <input asp-for="Password"/>
+        <input asp-for="Password" class="form-control" placeholder="Password"/>
         <span asp-validation-for="Password"></span>
-        <input asp-for="PasswordConfirmation" />
+        <input asp-for="PasswordConfirmation" class="form-control" placeholder="Confirm Password"/>
         <span asp-validation-for="PasswordConfirmation"></span>
-        <button type="submit">Register</button>
+        <button type="submit" class="btn">Register</button>
     </form>
 </div>

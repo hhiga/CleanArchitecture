@@ -1,0 +1,65 @@
+﻿* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.login-card, .register-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form, .register-form {
+    max-width: 330px;
+}
+
+.h3 {
+    font-size: 1.75rem;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+}
+
+.form-control {
+    padding: .5rem;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+    margin: .5rem;
+    width: 100%;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: .3rem;
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: .5rem;
+}
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+.link {
+    text-decoration: none;
+    margin: .5rem;
+}
