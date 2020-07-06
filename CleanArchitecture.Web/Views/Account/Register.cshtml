@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+@model CleanArchitecture.Web.Models.ViewModels.Account.RegisterViewModel
+
+<div>
+    <form method="post" asp-controller="Account" asp-action="Register">
+        <input type="hidden" asp-for="ReturnUrl"/>
+        <div asp-validation-summary="ModelOnly"></div>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+        <input asp-for="Name" />
+        <span asp-validation-for="UserName"></span>
+        <input asp-for="Password"/>
+        <span asp-validation-for="Password"></span>
+        <input asp-for="PasswordConfirmation" />
+        <span asp-validation-for="PasswordConfirmation"></span>
+        <button type="submit">Register</button>
+    </form>
+</div>

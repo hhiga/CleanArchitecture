@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Core.UseCases
 {
-    public class RegisterUserUseCase : IRequestHandlerAsync<UserRegistrationRequestMessage, UserRegistrationResponseMessage>
+    public class RegisterUserUseCase : IRegisterUserUseCase
     {
         private readonly IUserRepository userRepository;
         public RegisterUserUseCase(IUserRepository userRepository)

@@ -2,6 +2,7 @@
 using Core.Dto.Contracts.Gateways.Repositories;
 using Core.Dto.UseCases.UserRegistration;
 using Core.Entities;
+using Core.Errors;
 using Core.UseCases;
 using Moq;
 using System.Collections.Generic;
@@ -30,6 +31,40 @@ namespace CleanArchitecture.UnitTest
 
             //Assert
             Assert.True(responseMessage.Success);
+        }
+
+        [Fact]
+        public async Task Cannot_Register_User_With_Invalid_Password()
+        {
+            //Arrange
+            var mockUserRepository = new Mock<IUserRepository>();
+            mockUserRepository
+                .Setup(repo => repo.Create(It.IsAny<User>(), It.IsAny<string>()))
+                .Returns(Task.FromResult(new CreateUserResponse(false, new List<string>(), "asdasd")));
+
+            var useCase = new RegisterUserUseCase(mockUserRepository.Object);
+
+            var requestMessage = new UserRegistrationRequestMessage("Carlos", "Garcia", "carlos.garcia@mail.com", "CarlosGarcia", "");
+
+            //Act and Assert
+            await Assert.ThrowsAsync<ApplicationGatewayException>(() => useCase.Handle(requestMessage));
+        }
+
+        [Fact]
+        public async Task Cannot_Register_User_With_Invalid_UserName()
+        {
+            //Arrange
+            var mockUserRepository = new Mock<IUserRepository>();
+            mockUserRepository
+                .Setup(repo => repo.Create(It.IsAny<User>(), It.IsAny<string>()))
+                .Returns(Task.FromResult(new CreateUserResponse(false, new List<string>(), "asdasd")));
+
+            var useCase = new RegisterUserUseCase(mockUserRepository.Object);
+
+            var requestMessage = new UserRegistrationRequestMessage("Carlos", "Garcia", "carlos.garcia@mail.com", "", "Passw0rd-");
+
+            //Act and Assert
+            await Assert.ThrowsAsync<ApplicationGatewayException>(() => useCase.Handle(requestMessage));
         }
     }
 }

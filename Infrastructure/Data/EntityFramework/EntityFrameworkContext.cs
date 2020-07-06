@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Infrastructure.Data.EntityFramework
 {
-    public class EntityFrameworkContext: IdentityUserContext<AppUser>
+    public class EntityFrameworkContext: IdentityDbContext<AppUser>
     {
         public EntityFrameworkContext(DbContextOptions<EntityFrameworkContext> options)
             :base(options)

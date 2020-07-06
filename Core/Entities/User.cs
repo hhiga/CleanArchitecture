@@ -13,7 +13,7 @@ namespace Core.Entities
         public string UserName { get; }
         public string PasswordHash { get; }
 
-        internal User(string firstName, string lastName, string email, string userName, string id = null, string passwordHash = null)
+        public User(string firstName, string lastName, string email, string userName, string id = null, string passwordHash = null)
         {
             this.Id = id;
             this.FirstName = firstName;

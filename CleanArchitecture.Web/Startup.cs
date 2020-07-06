@@ -40,7 +40,7 @@ namespace CleanArchitecture.Web
                 .AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
                 .AddDeveloperSigningCredential();
 
-            services.AddControllers();
+            services.AddControllersWithViews();
             services.AddLocalApiAuthentication();
         }
 
