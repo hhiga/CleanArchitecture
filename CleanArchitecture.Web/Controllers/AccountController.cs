@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Contracts.Gateways.Repositories;
+using Infrastructure.Data.EntityFramework.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Web.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AccountController : ControllerBase
-    {        
-        public AccountController()
+{        
+    public class AccountController : Controller
+    {
+        private readonly IUserRepository userRepository;
+        private readonly SignInManager<AppUser> signInManager;
+        public AccountController(IUserRepository userRepository, SignInManager<AppUser> signInManager)
         {
-
+            this.userRepository = userRepository;
+            this.signInManager = signInManager;
         }
-        [HttpPost]
-        public async Task<IActionResult> Post()
-        {
-            return Ok("Ok");
-        }
+        
     }
 }

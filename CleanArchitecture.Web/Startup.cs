@@ -4,6 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Infrastructure.Configuration;
+using Infrastructure.Data.EntityFramework.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data.EntityFramework;
+using CleanArchitecture.Web.Helpers;
 
 namespace CleanArchitecture.Web
 {
@@ -17,9 +22,26 @@ namespace CleanArchitecture.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
+            services.AddDbContext<EntityFrameworkContext>(config =>
+            {
+                config.AddDbContextConfiguration();
+            });
+
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<EntityFrameworkContext>()
+                .AddDefaultTokenProviders();
             ServiceCollectionExtension.AddInfrastructureServices(services);
+
+            services.AddIdentityServer()
+                .AddAspNetIdentity<AppUser>()
+                .AddInMemoryApiResources(IdentityServerConfig.GetApis())
+                .AddInMemoryClients(IdentityServerConfig.GetClients())
+                .AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
+                .AddDeveloperSigningCredential();
+
             services.AddControllers();
+            services.AddLocalApiAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,8 +52,11 @@ namespace CleanArchitecture.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();            
+            app.UseRouting();
 
+            app.UseIdentityServer();
+
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

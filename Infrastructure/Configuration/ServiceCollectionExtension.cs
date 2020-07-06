@@ -2,6 +2,8 @@
 using Infrastructure.Data.EntityFramework;
 using Infrastructure.Data.EntityFramework.Entities;
 using Infrastructure.Data.EntityFramework.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Configuration
@@ -10,12 +12,15 @@ namespace Infrastructure.Configuration
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            //services.AddDbContext<EntityFrameworkContext>();//configure to use mysql
-            
-            //services.AddTransient<IUserRepository, UserRepository>();
-            //services.AddIdentityCore<AppUser>();
-            
+            services.AddTransient<IUserRepository, UserRepository>();
+
             return services;
+        }
+
+        public static DbContextOptionsBuilder AddDbContextConfiguration(this DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql("server=localhost;database=CleanArchitecture;user=root;password=Softing123.");
+            return optionsBuilder;
         }
     }
 }
