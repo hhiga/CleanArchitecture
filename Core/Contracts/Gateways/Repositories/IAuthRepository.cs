@@ -9,5 +9,6 @@ namespace Core.Contracts.Gateways.Repositories
     public interface IAuthRepository
     {
         Task<LoginUserResponse> AuthenticateUser(string username, string password);
+        Task<LogoutUserResponse> LogOutUser(string userId);
     }
 }

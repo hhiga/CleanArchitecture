@@ -16,6 +16,8 @@ namespace Infrastructure.Configuration
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddTransient<ILoginUserUseCase, LoginUserUseCase>();
+            services.AddTransient<ILogoutUserUseCase, LogoutUserUseCase>();
+            
             services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
             return services;
         }
