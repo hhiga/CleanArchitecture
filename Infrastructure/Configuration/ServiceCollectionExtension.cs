@@ -5,7 +5,10 @@ using Infrastructure.Data.EntityFramework.Entities;
 using Infrastructure.Data.EntityFramework.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO;
 
 namespace Infrastructure.Configuration
 {
@@ -22,9 +25,9 @@ namespace Infrastructure.Configuration
             return services;
         }
 
-        public static DbContextOptionsBuilder AddDbContextConfiguration(this DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySql("server=localhost;database=CleanArchitecture;user=root;password=Softing123.");
+        public static DbContextOptionsBuilder AddDbContextConfiguration(this DbContextOptionsBuilder optionsBuilder, string databaseConnection)
+        {            
+            optionsBuilder.UseMySql(databaseConnection);
             return optionsBuilder;
         }
     }
