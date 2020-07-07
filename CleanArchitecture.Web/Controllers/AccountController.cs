@@ -2,6 +2,7 @@
 using Core.Dto.UseCases.UserRegistration;
 using Core.Errors;
 using Core.UseCases;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -11,10 +12,12 @@ namespace CleanArchitecture.Web.Controllers
     {
         private readonly IRegisterUserUseCase registerUserUseCase;
         private readonly ILoginUserUseCase loginUserUseCase;
-        public AccountController(IRegisterUserUseCase registerUserUseCase, ILoginUserUseCase loginUserUseCase)
+        private readonly IIdentityServerInteractionService interactionService;
+        public AccountController(IRegisterUserUseCase registerUserUseCase, ILoginUserUseCase loginUserUseCase, IIdentityServerInteractionService interactionService)
         {
             this.registerUserUseCase = registerUserUseCase;
             this.loginUserUseCase = loginUserUseCase;
+            this.interactionService = interactionService;
         }        
         public IActionResult Index()
         {
@@ -62,6 +65,12 @@ namespace CleanArchitecture.Web.Controllers
                 }
             }
             return View(registerViewModel);
+        }
+
+        public async Task<IActionResult> error(string errorId)
+        {
+            var message = await interactionService.GetErrorContextAsync(errorId);
+            return Json(message);
         }
     }
 }
